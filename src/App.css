@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+body {
+  background-color: #f9f9f9;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Chat Window */
+.chat-window {
+  position: relative;  
+  height: 100vh;
+  width: 100%;
+  background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* Chat Bubbles */
+.chat-bubble {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
+.chat-bubble.user {
+  align-self: flex-end;
+  background-color: #007aff;
   color: white;
+  margin-left: 20%;
+}
+.chat-bubble.ai {
+  align-self: flex-start;
+  background-color: #dcdcdc;
+  color: black;
+  max-width: 80%;
 }
 
-.App-link {
-  color: #61dafb;
+/* Message List */
+.message-list {
+  height: 100vh; /* 50px being the height of the input text area */
+  padding-bottom: 50px;
+  min-height: 80vh;
+  max-height: calc(100vh - 50px);
+  overflow-y: scroll;
+  flex: 1;
+  padding: 10px;
+  margin-bottom: 75px;
+  margin-top: 25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* message input textarea */
+
+.message-input {
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f7f7f7;
+  padding: 10px;
+  box-sizing: border-box;
+  border-top: 1px solid #d9d9d9;
+}
+
+.message-input textarea {
+  resize: both;
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  background-color: #fff;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+.message-input textarea:focus {
+  outline: none;
+}
+
+.message-input button {
+  background-color: #007aff;
+  color: #fff;
+  border: none;
+  margin-left: 10px;
+  padding: 10px 10px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right:10px;
+}
+
+.message-input button:active {
+  background-color: #0062cc;
+}
+
+.new-conversation-button {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+/*mobile responsive*/
+@media only screen and (max-width: 600px) {
+  .message-input textarea {
+    width: 80%;
+    margin-right: 0;
   }
-  to {
-    transform: rotate(360deg);
+  .message-input button {
+    width: 10%;
+    margin-right: 0;
+    margin-top: 10px;
   }
 }
