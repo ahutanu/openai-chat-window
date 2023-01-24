@@ -9,7 +9,7 @@ import ChatWindowSettings from "./ChatWindowSettings";
 
 const ChatWindow = () => {
   const [message, setMessage] = useState("");
-  const [temperature, setTemperature] = useState(0.5);
+  const [temperature, setTemperature] = useState(0.7);
   const [apiKey, setApiKey] = useState('');
   const [model, setModel] = useState("text-davinci-003");
   const [maxTokens, setMaxTokens] = useState(1536);
@@ -21,7 +21,7 @@ const ChatWindow = () => {
   const [images, setImages] = useState([]);
   const [frequencyPenalty, setFrequencyPenalty] = useState(0);
   const [presencePenalty, setPresencePenalty] = useState(0);
-
+  const [topP, setTopP] = useState(0.9);
 
   const configuration = new Configuration({
     apiKey: apiKey,
@@ -39,12 +39,14 @@ const ChatWindow = () => {
       model: model,
       prompt: prompt,
       temperature: parseFloat(temperature),
+      top_p: parseFloat(topP),
       max_tokens: maxTokens,
       frequency_penalty: parseFloat(frequencyPenalty),
       presence_penalty: parseFloat(presencePenalty)
     })
       .then(response => {
         if (response && response.data.choices && response.data.choices.length > 0) {
+          console.log(response);
           setConversation(
             [
               ...conversation,
@@ -188,6 +190,8 @@ const ChatWindow = () => {
             setFrequencyPenalty={setFrequencyPenalty} 
             presencePenalty={presencePenalty} 
             setPresencePenalty={setPresencePenalty}
+            topP={topP}
+            setTopP={setTopP}
           ></ChatWindowSettings>
         </div>
       </div>
