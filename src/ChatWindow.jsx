@@ -22,6 +22,8 @@ const ChatWindow = () => {
   const [frequencyPenalty, setFrequencyPenalty] = useState(0);
   const [presencePenalty, setPresencePenalty] = useState(0);
   const [topP, setTopP] = useState(0.9);
+  const [initialPrompt, setInitialPrompt] = useState("The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly. The AI provides help with anything, including questions about code, as the AI is an expert in everything including in all the major programming languages and is great at pair programming and debugging. Whenever the AI provided a code snippet, it was always enclosed between three backqoutes. The AI knew its limitations though, and it was not afraid to say \"I don't know.\" whenever he was not certain about an answer. \nUser: Hello, how are you?\nAI: I am an AI created by OpenAI. How can I help you today?\nUser:");
+  const [initialPromptEnabled, setInitialPromptEnabled] = useState(true);
 
   const configuration = new Configuration({
     apiKey: apiKey,
@@ -33,7 +35,11 @@ const ChatWindow = () => {
     e.preventDefault();
     setLoading(true);
     setConversation([...conversation, { message: message, author: "User", timestamp: new Date() }]);
-    const previousMessages = conversation.map(chat => chat.message).join("\n");
+    let previousMessages = conversation.map(chat => chat.author + ':' + chat.message).join("\n");
+    //if beginning of conversation, set background story to train AI responses
+    if (conversation.length === 0 && initialPromptEnabled) {
+        previousMessages = initialPrompt; 
+    }
     const prompt = previousMessages + "\n" + message;
     const response = await openai.createCompletion({
       model: model,
@@ -192,6 +198,10 @@ const ChatWindow = () => {
             setPresencePenalty={setPresencePenalty}
             topP={topP}
             setTopP={setTopP}
+            initialPrompt={initialPrompt}
+            setInitialPrompt={setInitialPrompt}
+            initialPromptEnabled={initialPromptEnabled}
+            setInitialPromptEnabled={setInitialPromptEnabled}
           ></ChatWindowSettings>
         </div>
       </div>

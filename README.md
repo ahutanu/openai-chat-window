@@ -29,4 +29,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Important Notes
 
-Be careful of your token usage. In order to continue the conversation with the AI model you chose, all your previous messages will count towards the token usage, so the longer the conversation, the higher the token usage. If you would like to rather ask him something new, where the conversation history does not matter, I highly recommend to use the 'Start new conversation' button at the top.
+1. Be careful of your token usage. In order to continue the conversation with the AI model you chose, all your previous messages will count towards the token usage, so the longer the conversation, the higher the token usage. If you would like to rather ask him something new, where the conversation history does not matter, I highly recommend to use the 'Start new conversation' button at the top.
+2. The initial prompt includes behind the scene a message to pre-train the AI's answers. This has been proven to be quite useful in my experiences, but adds to the token usage a very little. You can disable this form the Settings menu - Initial Prompt checkbox or change the text there entirely as well, but if you choose to change it, and include a conversation, try to keep the "User" and "AI" tags.

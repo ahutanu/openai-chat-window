@@ -79,6 +79,19 @@ function ChatWindowSettings(props) {
             <span className="input-group-text" id="inputGroup-sizing-default">{props.maxTokens}</span>
           </div>
         </div>
+        <div  className="input-group mb-3">
+          <div className="input-group-prepend">
+            {/* <span className="input-group-text" id="inputGroup-sizing-default">Initial Prompt</span> */}
+            <div className="input-group-text initial-prompt-text-inputs">
+              <input type="checkbox" aria-label="Checkbox for following text input" defaultChecked={props.initialPromptEnabled} onChange={e => props.setInitialPromptEnabled(!props.initialPromptEnabled)} />
+              {/* <label style={{ marginLeft: '.5rem' }}>{props.initialPromptEnabled ? ' Enabled' : ' Disabled'}</label> */}
+            </div>
+          </div>
+          <textarea type="text" className="form-control" aria-label="Text input with checkbox" value={props.initialPrompt} onChange={e => props.setInitialPrompt(e.target.value)} disabled={!props.initialPromptEnabled}/>
+          <div className="input-group-prepend">
+            <span className="input-group-text initial-prompt-text-inputs" id="inputGroup-sizing-default">Initial <br /> Prompt <br /> {props.initialPromptEnabled ? ' Enabled' : ' Disabled'}</span>
+          </div>
+        </div>
         <br />
         <h4>AI Image Model Settings</h4>
         <br />
