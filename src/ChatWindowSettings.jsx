@@ -25,10 +25,9 @@ function ChatWindowSettings(props) {
             <span className="input-group-text" id="inputGroup-sizing-default">AI Model</span>
           </div>
           <select className="form-select" value={props.model} onChange={e => props.setModel(e.target.value)}>
-            <option value="text-davinci-003">Davinci</option>
-            <option value="text-curie-001">Curie</option>
-            <option value="text-babbage-001">Babbage</option>
-            <option value="text-ada-001">Ada</option>
+            {props.models.map((model, index) => (
+              <option key={index} value={model}>{model}</option>
+            ))}
           </select>
           <br />
         </div>
@@ -81,10 +80,8 @@ function ChatWindowSettings(props) {
         </div>
         <div  className="input-group mb-3">
           <div className="input-group-prepend">
-            {/* <span className="input-group-text" id="inputGroup-sizing-default">Initial Prompt</span> */}
             <div className="input-group-text initial-prompt-text-inputs">
               <input type="checkbox" aria-label="Checkbox for following text input" defaultChecked={props.initialPromptEnabled} onChange={e => props.setInitialPromptEnabled(!props.initialPromptEnabled)} />
-              {/* <label style={{ marginLeft: '.5rem' }}>{props.initialPromptEnabled ? ' Enabled' : ' Disabled'}</label> */}
             </div>
           </div>
           <textarea type="text" className="form-control" aria-label="Text input with checkbox" value={props.initialPrompt} onChange={e => props.setInitialPrompt(e.target.value)} disabled={!props.initialPromptEnabled}/>
