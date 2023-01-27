@@ -34,12 +34,20 @@ body {
 
 .timestamp.user {
   align-self: flex-end;
-  margin-left: 73%;
+  text-align: right;
 }
 
 .timestamp.ai {
   align-items: flex-start;
-  max-width: 80%;
+  text-align: left;
+}
+
+/* timestamp mobile responsive */
+@media only screen and (max-width: 768px) {
+  .timestamp {
+    width: 100%;
+    font-size: 10px;
+  }
 }
 
 /* Message List */
@@ -121,6 +129,17 @@ body {
 
 .menu-button {
   font-weight: bold;
+}
+
+/* menu mobile responsive */
+@media only screen and (max-width: 768px) {
+  .info-model {
+    width: 100%;
+  }
+
+  .info-data {
+    font-weight: bold;
+  }
 }
 
 /* chat window settings */

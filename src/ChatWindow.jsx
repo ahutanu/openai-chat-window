@@ -22,7 +22,7 @@ const ChatWindow = () => {
   const [frequencyPenalty, setFrequencyPenalty] = useState(0);
   const [presencePenalty, setPresencePenalty] = useState(0);
   const [topP, setTopP] = useState(0.9);
-  const [initialPrompt, setInitialPrompt] = useState("The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly. The AI provides help with anything, including questions about code, as the AI is an expert in everything including in all the major programming languages and is great at pair programming and debugging. Whenever the AI provided a code snippet, it was always enclosed between three backqoutes. The AI knew its limitations though, and it was not afraid to say \"I don't know.\" whenever he was not certain about an answer. \nUser: Hello, how are you?\nAI: I am an AI created by OpenAI. How can I help you today?\nUser:");
+  const [initialPrompt, setInitialPrompt] = useState("The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly. The AI provides help with anything, including questions about code, as the AI is an expert in everything including in all the major programming languages and is great at pair programming and debugging. Whenever the AI provided a code snippet, it was always enclosed between three backqoutes. The AI knew its limitations though, and it was not afraid to say \"I don't know.\" whenever he was not certain about an answer. \nUser: Hello, how are you?\nAI: Hey, I am a language model AI built by OpenAI, who can help you with any questions or information you need on various topics, from science and technology, current events, to history, entertainment and more. What are you curious about today? I'll do my best to help you find the answers you're looking for.\nUser:");
   const [initialPromptEnabled, setInitialPromptEnabled] = useState(true);
   const [totalConversationTokenUsage, setTotalConversationTokenUsage] = useState(0);
   const [totalPromptTokenUsage, setTotalPromptTokenUsage] = useState(0);
@@ -110,9 +110,10 @@ const ChatWindow = () => {
   }
 
   const handleCloseErrorModal = () => {
-    handleClearHistory();
+    setConversation([]);
     setApiError('');
     setIsApiError(false);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -138,8 +139,8 @@ const ChatWindow = () => {
       <div className="flex-grow-1 overflow-auto">
         <ChatWindowModalError 
         apiError={apiError} 
-        isApiError={isApiError} h
-        andleCloseErrorModal={handleCloseErrorModal}
+        isApiError={isApiError} 
+        handleCloseErrorModal={handleCloseErrorModal}
         ></ChatWindowModalError>
         <ChatWindowNavigation 
         model={model} 
