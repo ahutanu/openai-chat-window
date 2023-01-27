@@ -17,7 +17,7 @@ function ChatWindowSettings(props) {
           </div>
           <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value={props.apiKey} onChange={e => props.setApiKey(e.target.value)} />
         </div>
-        <em>You can get an API key form <a href="https://beta.openai.com/account/api-keys">here</a>.</em>
+        <em>You can get an API key from <a href="https://beta.openai.com/account/api-keys">here</a>.</em>
         <br /><br />
         <h4>AI Text Model Settings</h4>
         <br />
